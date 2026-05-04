@@ -1689,6 +1689,61 @@ img {
     }
 }
 
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+
+    .achievements-grid,
+    .sessions-grid,
+    .certifications-grid,
+    .blog-grid,
+    .news-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    .colleges-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+    }
+
+    .footer-content {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    .achievements-grid,
+    .sessions-grid,
+    .certifications-grid,
+    .blog-grid,
+    .news-grid {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+
+    .colleges-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+}
+
 @media (max-width: 768px) {
     body {
         font-size: 14px;
@@ -1915,8 +1970,127 @@ img {
         box-sizing: border-box;
     }
 
+@media (max-width: 576px) {
+    body {
+        font-size: 12px;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    .section {
+        padding: 25px 0;
+    }
+
+    .section-header {
+        margin-bottom: 20px;
+    }
+
+    .section-header h2 {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+
+    .section-header p {
+        font-size: 0.9rem;
+    }
+
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.1rem; }
+    h4 { font-size: 1rem; }
+
+    .header {
+        padding: 15px 0;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+
+    .hero-stats {
+        gap: 15px;
+    }
+
+    .hero-stat {
+        text-align: center;
+    }
+
+    .btn {
+        padding: 10px 18px;
+        font-size: 0.85rem;
+    }
+
+    .achievement-card,
+    .session-card,
+    .certification-card,
+    .blog-card,
+    .news-card,
+    .college-card {
+        padding: 15px;
+    }
+
+    .timeline-item {
+        padding-left: 35px;
+    }
+
+    .timeline::before {
+        left: 12px;
+    }
+
+    .timeline-dot {
+        left: 12px;
+        width: 8px;
+        height: 8px;
+    }
+
+    .contact-form {
+        padding: 15px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .contact-float {
+        bottom: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 0.7rem;
+    }
+
+    .contact-float:hover {
+        width: 140px;
+    }
+
+    .footer-content {
+        gap: 15px;
+    }
+
+    .coffee h2 {
+        font-size: 1.25rem;
+    }
+
+    .modal-panel {
+        margin: 15px;
+        max-height: 75vh;
+    }
+
     .modal-gallery {
         grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .modal-gallery-item {
+        padding: 10px;
     }
 }
 
