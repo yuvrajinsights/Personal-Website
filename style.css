@@ -1442,7 +1442,14 @@ img {
 .contact-form h3 {
     font-size: 1.5rem;
     color: var(--primary);
-    margin-bottom: 24px;
+    margin-bottom: 16px;
+}
+
+.contact-note {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    line-height: 1.6;
 }
 
 .hidden {

@@ -206,8 +206,12 @@ function initFormValidation() {
                         'Accept': 'application/json'
                     },
                     body: formData
-                }).then(response => response.json())
-                .then(data => {
+                }).then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                }).then(data => {
                     showNotification('success', 'Your enquiry has been sent directly to email.');
                     if (contactDetails) {
                         contactDetails.classList.remove('hidden');
@@ -217,7 +221,10 @@ function initFormValidation() {
                     }
                     form.reset();
                 }).catch(() => {
-                    showNotification('error', 'Unable to send enquiry. Please try again later.');
+                    showNotification('error', 'Direct send failed. Redirecting to the form provider for delivery.');
+                    setTimeout(() => {
+                        form.submit();
+                    }, 800);
                 });
             } else {
                 showNotification('error', errors[0]);

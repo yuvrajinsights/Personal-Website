@@ -1088,10 +1088,12 @@
                 </div>
                 <div class="contact-form">
                     <h3>Request Direct Contact Details</h3>
-                    <form class="contact-inquiry-form" action="https://formsubmit.co/ajax/pondkuleyuvraj@gmail.com" method="POST" novalidate>
+                    <p class="contact-note">First-time enquiries send a one-time verification email to <strong>pondkuleyuvraj@gmail.com</strong>. Please click the link in that email once so all future submissions arrive directly.</p>
+                    <form class="contact-inquiry-form" action="https://formsubmit.co/pondkuleyuvraj@gmail.com" method="POST" novalidate>
                         <input type="hidden" name="_subject" value="New enquiry from yuvrajpondkule.com">
                         <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_template" value="box">
+                        <input type="hidden" name="_next" value="https://yuvrajpondkule.com/#contact">
+                        <input type="hidden" name="_template" value="table">
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name" placeholder="Your full name" required>
