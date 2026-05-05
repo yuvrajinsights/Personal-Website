@@ -185,28 +185,53 @@ img {
     right: 24px;
     top: auto;
     width: 60px;
+    min-width: 60px;
     height: 60px;
     border-radius: 50%;
     background: var(--secondary);
     color: white;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
     box-shadow: var(--shadow-lg);
     z-index: 2000;
-    transition: all 0.3s ease;
+    transition: width 0.3s ease, border-radius 0.3s ease, background 0.3s ease;
     font-size: 0.9rem;
     font-weight: 600;
     text-decoration: none;
     white-space: nowrap;
     overflow: hidden;
-    padding: 0 20px;
+    padding: 0 14px;
+}
+
+.contact-float i {
+    transition: transform 0.3s ease;
+}
+
+.contact-float span {
+    display: inline-block;
+    max-width: 0;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: max-width 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
 }
 
 .contact-float:hover {
-    width: 200px;
-    border-radius: 30px;
+    width: auto;
+    min-width: 180px;
+    border-radius: 999px;
     background: var(--primary);
+}
+
+.contact-float:hover i {
+    transform: rotate(15deg);
+}
+
+.contact-float:hover span {
+    max-width: 130px;
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .logo {
@@ -453,6 +478,37 @@ img {
     transform: translateY(-4px);
 }
 
+.icon-svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.hero-social a svg,
+.contact-social a svg,
+.contact-icon svg,
+.about-feature-icon svg,
+.achievement-icon svg,
+.certification-icon svg,
+.blog-image svg,
+.blog-link svg,
+.contact-float svg,
+.coffee-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.certification-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: transparent;
+}
+
+.certification-icon.google-logo {
+    background: transparent;
+}
+
 /* About Section */
 .about {
     background: var(--surface);
@@ -603,6 +659,12 @@ img {
     border-radius: var(--radius-lg);
     color: var(--secondary);
     font-size: 1.5rem;
+}
+
+.achievement-icon img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
 }
 
 .achievement-number {
@@ -1363,6 +1425,13 @@ img {
     transform: translateY(-4px);
 }
 
+.footer-section ul li a i {
+    margin-right: 10px;
+    width: 18px;
+    display: inline-block;
+    text-align: center;
+}
+
 .contact-form {
     background: var(--surface);
     padding: 40px;
@@ -1823,12 +1892,14 @@ img {
         bottom: 20px;
         right: 20px;
         width: 50px;
+        min-width: 50px;
         height: 50px;
         font-size: 0.8rem;
     }
 
     .contact-float:hover {
-        width: 180px;
+        width: auto;
+        min-width: 160px;
     }
 
     /* Marquee adjustments */
@@ -1936,12 +2007,14 @@ img {
         bottom: 15px;
         right: 15px;
         width: 45px;
+        min-width: 45px;
         height: 45px;
         font-size: 0.75rem;
     }
 
     .contact-float:hover {
-        width: 160px;
+        width: auto;
+        min-width: 140px;
     }
 
     .footer-content {
@@ -2063,12 +2136,14 @@ img {
         bottom: 10px;
         right: 10px;
         width: 40px;
+        min-width: 40px;
         height: 40px;
         font-size: 0.7rem;
     }
 
     .contact-float:hover {
-        width: 140px;
+        width: auto;
+        min-width: 130px;
     }
 
     .footer-content {

@@ -196,21 +196,29 @@ function initFormValidation() {
             }
 
             if (isValid) {
-                const mailSubject = encodeURIComponent(`Website enquiry from ${name.value.trim()}`);
-                const mailBody = encodeURIComponent(`Name: ${name.value.trim()}\nEmail: ${email.value.trim()}\nPhone: ${phone.value.trim()}\nMessage: ${message.value.trim()}`);
-                const mailtoLink = `mailto:pondkuleyuvraj@gmail.com?subject=${mailSubject}&body=${mailBody}`;
+                const formData = new FormData(form);
+                formData.set('_subject', `Website enquiry from ${name.value.trim()}`);
+                formData.set('_captcha', 'false');
 
-                showNotification('success', 'Opening mail app to send your enquiry.');
-                if (contactDetails) {
-                    contactDetails.classList.remove('hidden');
-                }
-                if (contactMessage) {
-                    contactMessage.textContent = 'Contact details are visible now. Your enquiry will be sent by email.';
-                }
-                form.reset();
-                setTimeout(() => {
-                    window.location.href = mailtoLink;
-                }, 200);
+                fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    body: formData
+                }).then(response => response.json())
+                .then(data => {
+                    showNotification('success', 'Your enquiry has been sent directly to email.');
+                    if (contactDetails) {
+                        contactDetails.classList.remove('hidden');
+                    }
+                    if (contactMessage) {
+                        contactMessage.textContent = 'Your enquiry was submitted successfully. I will reply by email soon.';
+                    }
+                    form.reset();
+                }).catch(() => {
+                    showNotification('error', 'Unable to send enquiry. Please try again later.');
+                });
             } else {
                 showNotification('error', errors[0]);
             }
