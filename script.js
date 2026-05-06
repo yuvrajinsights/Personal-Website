@@ -33,25 +33,14 @@ function initMobileNav() {
 
     toggle.addEventListener('click', () => {
         nav.classList.toggle('active');
-        const icon = toggle.querySelector('i');
-        if (nav.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
+        toggle.classList.toggle('open');
     });
 
     // Close nav when clicking outside
     document.addEventListener('click', (e) => {
         if (!nav.contains(e.target) && !toggle.contains(e.target)) {
             nav.classList.remove('active');
-            const icon = toggle.querySelector('i');
-            if (icon) {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
+            toggle.classList.remove('open');
         }
     });
 }

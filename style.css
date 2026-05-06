@@ -292,6 +292,51 @@ img {
     position: relative;
 }
 
+.mobile-icon {
+    display: inline-block;
+    width: 22px;
+    height: 18px;
+    position: relative;
+}
+
+.mobile-icon span,
+.mobile-icon::before,
+.mobile-icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--text);
+    border-radius: 999px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.mobile-icon::before {
+    top: 0;
+}
+
+.mobile-icon span {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.mobile-icon::after {
+    bottom: 0;
+}
+
+.mobile-toggle.open .mobile-icon::before {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.mobile-toggle.open .mobile-icon::after {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.mobile-toggle.open .mobile-icon span {
+    opacity: 0;
+}
+
 .header {
     position: fixed;
     top: 0;
