@@ -212,12 +212,12 @@ function initFormValidation() {
                     }
                     return response.json();
                 }).then(data => {
-                    showNotification('success', 'Your enquiry has been sent directly to email.');
+                    showNotification('success', 'Message delivered - I\'ll get in contact with you at earliest.');
                     if (contactDetails) {
                         contactDetails.classList.remove('hidden');
                     }
                     if (contactMessage) {
-                        contactMessage.textContent = 'Your enquiry was submitted successfully. I will reply by email soon.';
+                        contactMessage.textContent = 'Message delivered - I\'ll get in contact with you at earliest.';
                     }
                     form.reset();
                 }).catch(() => {
