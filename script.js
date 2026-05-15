@@ -4,10 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeader();
     initMobileNav();
     initSmoothScroll();
+    initPageTransitions();
+    initActiveNav();
+    initLectureFilters();
     initCollegeModals();
     initFormValidation();
     initAnimations();
     initMarqueeDuplication();
+    initLazyLoading();
 });
 
 // Header scroll effect
@@ -49,8 +53,11 @@ function initMobileNav() {
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#') return;
+            if (location.pathname !== this.pathname || location.hostname !== this.hostname) return;
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const target = document.querySelector(href);
             if (target) {
                 const headerHeight = document.querySelector('.header').offsetHeight;
                 const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
@@ -65,13 +72,68 @@ function initSmoothScroll() {
                 const toggle = document.querySelector('.mobile-toggle');
                 if (nav && nav.classList.contains('active')) {
                     nav.classList.remove('active');
-                    const icon = toggle.querySelector('i');
-                    if (icon) {
-                        icon.classList.remove('fa-times');
-                        icon.classList.add('fa-bars');
-                    }
+                    toggle.classList.remove('open');
                 }
             }
+        });
+    });
+}
+
+function initPageTransitions() {
+    const transitionOverlay = document.querySelector('.page-transition');
+    const pageLinks = document.querySelectorAll('.nav-link, a.btn, a.transition-link');
+
+    pageLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || link.target === '_blank') return;
+
+        link.addEventListener('click', (e) => {
+            if (href === window.location.pathname.split('/').pop()) return;
+            e.preventDefault();
+            transitionOverlay.classList.add('visible');
+            setTimeout(() => {
+                window.location.href = href;
+            }, 260);
+        });
+    });
+
+    window.addEventListener('pageshow', () => {
+        transitionOverlay.classList.remove('visible');
+    });
+}
+
+function initActiveNav() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === currentPath || (href === 'index.html' && currentPath === '')) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+function initLectureFilters() {
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const lectureCards = document.querySelectorAll('.lecture-card');
+    if (!filterButtons.length || !lectureCards.length) return;
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const filterValue = button.dataset.filter;
+            lectureCards.forEach(card => {
+                if (filterValue === 'all' || card.dataset.category === filterValue) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         });
     });
 }
