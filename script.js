@@ -17,13 +17,23 @@ document.addEventListener('DOMContentLoaded', () => {
 // Header scroll effect
 function initHeader() {
     const header = document.querySelector('.header');
+    const hero = document.querySelector('.hero');
     if (!header) return;
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+        const offset = window.scrollY;
+        if (offset > 50) {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
+        }
+
+        if (offset > 120) {
+            header.classList.add('shrink');
+            if (hero) hero.classList.add('hero-scrolled');
+        } else {
+            header.classList.remove('shrink');
+            if (hero) hero.classList.remove('hero-scrolled');
         }
     });
 }
@@ -99,6 +109,12 @@ function initPageTransitions() {
 
     window.addEventListener('pageshow', () => {
         transitionOverlay.classList.remove('visible');
+    });
+
+    window.addEventListener('beforeunload', () => {
+        if (transitionOverlay) {
+            transitionOverlay.classList.add('visible');
+        }
     });
 }
 
